@@ -1,0 +1,14 @@
+;;Definicion del alfabeto
+(def alphabet (seq "abcdefghijklmnopqrstuvwxyz"))
+
+;;Definicion de la funcion de encripcion
+(defn encrypt [text interval]
+
+;;Anidacion de la funcion para que el return caiga en la siguiente funcion
+  (let [cipher (->> (cycle alphabet)
+                    (drop interval)
+                    (take 26)
+                    (zipmap alphabet))]
+  (apply str (replace cipher text))))
+
+(encrypt "Me gusto aprender a usar funciones anidadas y brindarle el intervalo a la funcion" 2)
